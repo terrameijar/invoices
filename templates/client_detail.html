@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="display-4 my-4">Client Detail</h3>
+<div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card w-85 mb-4 border-secondary">
+            <div class="card-body text-dark pl-5">
+                <h5 class="card-title">{{client.first_name}} {{ client.last_name }}</h5>
+                <p class="card-text">{{ client.email }}</p>
+                <p class="card-text">Company: {{ client.company }} </p>
+                <a href="{% url "client-edit" client.pk %}" class="btn btn-primary">Edit</a>
+                <a href="{% url "client-delete" client.pk %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p>Invoices</p>
+{% if invoices %}
+                <div class="invoices-list">
+                    <table class="table table-hover client-invoices-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Invoice</th>
+                                <th scope="col">Client</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for invoice in invoices %}
+
+                                    <tr class="table-row table-row-clickable" data-href="{% url 'invoice-detail' invoice.pk %}">
+                                        <th scope="row"><a href="{% url 'invoice-detail' invoice.pk %}" class="stretched-link">#{{ forloop.counter }}</a></th>
+                                        <td>{{ invoice.client }}</td>
+                                        <td>{{ invoice.invoice_total }}</td>
+                                        <td> {{ invoice.create_date }} </td>
+                                    </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+{% else %}
+<p>You have not billed this customer yet.</p>
+ <a href="{% url 'new-invoice' %}" class="btn btn-success">Create a new invoice</a>
+{% endif %}
+{% endblock content %}

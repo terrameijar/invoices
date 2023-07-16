@@ -1,0 +1,282 @@
+{% load static %}
+<html>
+    <head>
+        <title>
+            Invoice
+        </title>
+        <style>
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 14px/1.4 Georgia, serif;
+}
+
+
+#page-wrap {
+    /*width: 800px; Only enable this for web viewing*/
+    /*margin: 0 auto;*/
+}
+
+
+table {
+    border-collapse: collapse;
+}
+table td, table th {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#header {
+    height: 15px;
+    width: 100%;
+    margin: 20px 0;
+    background: #222;
+    text-align: center;
+    color: white;
+    font: bold 15px Helvetica, Sans-Serif;
+    text-transform: uppercase;
+    letter-spacing: 20px;
+    padding: 8px 0px;
+}
+
+#address {
+    width: 250px;
+    height: 150px;
+    float: left;
+}
+
+#customer { overflow: hidden; }
+
+#identity{
+    max-height: 200px;
+    overflow:auto;
+}
+
+#identity p{
+    max-height: 100px;
+}
+
+#logo {
+    text-align: right;
+    float: right;
+    margin-top: 10px;
+    padding:0;
+
+
+    object-fit: contain;
+
+}
+
+
+
+#customer-title {
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
+}
+
+#meta {
+    margin-top: 1px;
+    width: 300px;
+    float: right;
+}
+#meta td {
+    text-align: right;
+}
+#meta td.meta-head {
+    text-align: left;
+    background: #eee;
+}
+
+
+
+#items {
+    clear: both;
+    width: 100%;
+    margin: 30px 0 0 0;
+    border: 1px solid black;
+}
+
+#items th {
+    background: #eee;
+}
+
+#items tr.item-row td {
+    border: 0;
+    vertical-align: top;
+}
+
+#items td.description {
+    width: 300px;
+}
+#items td.item-name {
+    width: 175px;
+}
+
+
+
+#items td.total-line {
+    border-right: 0;
+}
+
+#items td.total-value {
+    border-left: 0;
+    padding: 10px;
+}
+
+
+
+#items td.balance {
+    background: #eee;
+}
+
+#items tr td.blank {
+    border: 0;
+}
+
+
+
+#terms {
+    text-align: center;
+    margin: 20px 0 0 0;
+}
+
+#terms h5 {
+    text-transform: uppercase;
+    font: 13px Helvetica, Sans-Serif;
+    letter-spacing: 10px;
+    border-bottom: 1px solid black;
+    padding: 0 0 8px 0;
+    margin: 0 0 8px 0;
+}
+
+.qty{
+    text-align: center;
+}
+
+.center{
+    text-align: center;
+}
+
+.right{
+    text-align: right;
+}
+
+.blank_row{
+    height:20px;
+
+    border-collapse: collapse;
+    border:0;
+}
+
+@page {
+    size: A4;
+    margin:1cm;
+
+}
+        </style>
+    </head>
+<body>
+    <div id="page-wrap">
+        <p id="header">INVOICE</p>
+        <div id="identity">
+            <p style="display:inline-block;"><strong>{{ user.first_name }} {{ user.last_name }}</strong><br>
+                {% if user.phone_number %}
+                    Phone: {{user.phone_number }}<br/>
+                {% endif%}
+                <br/>
+                {{ user.address1 }}<br/>
+                {{ user.address2 }}<br/>
+                {{ user.country }}<br/>
+            </p>
+            {% comment %} <div id="logo"><img id="image" src="http://{{ host }}{% static 'img/logo2.png' %}" alt="logo goes here"/></div> {% endcomment %}
+        </div>
+
+        <div style="clear:both"></div>
+        <div id="customer">
+            <br>
+            <br>
+
+            <p id="customer-title">
+                {{ client.company }}<br>
+                c/o {{ client.first_name }} {{ client.last_name }}<br>
+            </p>
+            <table id="meta">
+                <tr>
+                    <td class="meta-head">Invoice #</td>
+                    <td><p class="center">{{ invoice.pk }}</p></td>
+                </tr>
+                <tr>
+                    <td class="meta-head">Date</td>
+                    <td><p id="date" class="center">{{ invoice.create_date }}</p></td>
+                </tr>
+                <tr>
+                    <td class="meta-head">Amount Due</td>
+                    <td><div class="due center">${{ invoice.invoice_total }}</div></td>
+                </tr>
+            </table>
+        </div>
+
+
+        <table id="items">
+            <tr>
+                <th colspan="2" class="center">Item</th>
+
+                <th class="center">Rate</th>
+                <th class="center">Qty/Hours</th>
+                <th class="center">Total</th>
+
+            </tr>
+            {% for item in invoice_items reversed %}
+                <tr class="item-row">
+		      <td class="item-name" colspan="2"><div><p>{{ item.item }}</p></div></td>
+
+		      <td><p class="cost center">${{ item.rate }}</p></td>
+		      <td><p class="qty center">{{ item.quantity }}</p></td>
+		      <td><p class="center"><span class="price">${{ item.subtotal }}</span></p></td>
+		  </tr>
+            {% endfor %}
+
+
+
+<tr >
+    <td colspan="5" class="blank_row"></td>
+</tr>
+
+		  <tr>
+		      <td colspan="2" class="blank"> </td>
+		      <td colspan="2" class="total-line">Subtotal</td>
+		      <td class="total-value"><div id="subtotal" class="center">${{ invoice.invoice_total }}</div></td>
+		  </tr>
+		  <tr>
+
+
+
+		  </tr>
+		  <tr>
+
+
+		  </tr>
+		  <tr>
+		      <td colspan="2" class="blank"> </td>
+		      <td colspan="2" class="total-line balance">Balance Due</td>
+		      <td class="total-value balance"><div class="due center">${{ invoice.invoice_total }}</div></td>
+		  </tr>
+
+		</table>
+
+		<div id="terms">
+		  <h5>Terms</h5>
+		  <p>{{invoice.invoice_terms }}</p>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

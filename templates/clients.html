@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="text-center">My Clients</h2>
+    <a href="{% url "new-client" %}" class="btn btn-success">New Client</a>
+            {% comment %} TODO: Make this bootstrap cards {% endcomment %}
+            {% comment %} TODO: Client Detail page should show invoices billed to client {% endcomment %}
+
+
+
+            <div class="invoices-list">
+            {% if object_list %}
+                <h3 class="text-center"> All Clients </h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Client</th>
+                            {% comment %} <th scope="col"></th> {% endcomment %}
+                            <th scope="col">Company</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for client in object_list %}
+
+                                <tr class="table-row table-row-clickable" data-href="{% url 'client-detail' client.pk %}">
+                                    <th scope="row"><a href="{% url 'client-detail' client.pk %}" class="stretched-link">#{{ forloop.counter }}</a></th>
+                                    <td>{{ client.first_name }}{{ client.last_name }}</td>
+                                    <td> {{ client.company }} </td>
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>You have not created any clients yet.</p>
+            {% endif %}
+            </div>
+
+{% endblock content %}

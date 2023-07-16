@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="row d-flex align-items-center">
+        <div id="new-invoice" class="col-md-6 offset-md-3">
+            <h2>New Client</h2>
+            <form action="" method="POST">{% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary"/>Create Client</form>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+    <h1 class="text-center">Create New Invoice</h1>
+
+    <div class="row d-flex align-items-center">
+        <div id="new-invoice" class="col-md-6 offset-md-3">
+
+
+            <form action="" method="POST">
+                {% csrf_token %}
+            {{ invoice_items.management_form }}
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.title|as_crispy_field }}
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        {{ form.client|as_crispy_field }}
+                    </div>
+
+                </div>
+            <h3>Invoice Items</h3>
+                {% for form in invoice_items %}
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                                {{ form.item|as_crispy_field }}
+                        </div>
+
+                        <div class="form-group col-md-2">
+                                {{ form.quantity|as_crispy_field }}
+                        </div>
+
+                        <div class="form-group col-md-2">
+                                {{ form.rate|as_crispy_field }}
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+
+                <button class="btn btn-primary" type="submit">Save Invoice</button>
+            </form>
+
+</div>
+    </div>
+{% endblock content %}
