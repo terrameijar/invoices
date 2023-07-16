@@ -10,6 +10,7 @@ exclude =
     build,
     dist,
     venv,
+    .venv,
     .env,
     migrations,
     addons,
