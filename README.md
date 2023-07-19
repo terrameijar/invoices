@@ -19,11 +19,11 @@ This invoice generator is a Django powered online tool to build PDF invoices fro
 
 Django invoices runs in a docker container and uses a Postgres 9.x image. Before you can run it, you need to have Docker and Docker-compose installed
 
-+ Install Docker and docker-compose for [your platform](https://docs.docker.com/compose/install/)
++ Install Docker and docker compose for [your platform](https://docs.docker.com/compose/install/)
 + clone the repo:
 
     ```sh
-    git clone git@github.com:terrameijar/divio-django-invoice.git
+    git clone git@github.com:terrameijar/invoices.git
     ```
 
 + Build and run the project:
