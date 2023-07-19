@@ -10,7 +10,7 @@ format:
 
 test:
 	@printf '\xf0\x9f\x94\x8d  \e[1;32mRunning tests\e[0m\n'
-	docker-compose run web python manage.py test
+	docker compose run web python manage.py test
 	# Consider changing this to docker-compose run web coverage manage.py test
 
 run:
