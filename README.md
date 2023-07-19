@@ -29,8 +29,8 @@ Django invoices runs in a docker container and uses a Postgres 9.x image. Before
 + Build and run the project:
 
     ```sh
-    docker-compose build
-    docker-compose run
+    docker compose build
+    docker compose run
     ```
 
 + To run the automated tests:
