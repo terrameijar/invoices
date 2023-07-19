@@ -1,0 +1,21 @@
+services:
+  web:
+    build:
+      context: .
+    volumes:
+      - invoices_media:/app/staticfiles
+    expose:
+      - 8000
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - web # Wait until web service is ready
+    volumes:
+      - invoices_media:/app/staticfiles
+
+volumes:
+  invoices_media:

@@ -18,6 +18,7 @@ RUN pip install -r requirements.txt
 
 COPY . /app
 
-EXPOSE 9000
+EXPOSE 8000
 RUN python manage.py collectstatic --noinput
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:9000"]
+# CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "-c","gunicorn.conf.py", "invoice_system.wsgi:application"]
