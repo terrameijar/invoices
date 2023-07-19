@@ -1,5 +1,6 @@
 from django.forms import ModelForm
-from .models import Invoice, InvoiceItem, Client
+
+from .models import Client, Invoice, InvoiceItem
 
 
 class InvoiceItemsForm(ModelForm):

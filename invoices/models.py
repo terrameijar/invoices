@@ -1,10 +1,6 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth import get_user_model
-
-
-from django.dispatch import receiver
-from django.db.models.signals import pre_save, post_save
 from phonenumber_field.modelfields import PhoneNumberField
 
 

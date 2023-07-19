@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from users.forms import CustomUserCreationForm, CustomUserChangeForm
+from users.forms import CustomUserChangeForm, CustomUserCreationForm
 from users.models import CustomUser
-from .models import Invoice, Client, InvoiceItem
+
+from .models import Client, Invoice, InvoiceItem
 
 
 class CustomUserAdmin(UserAdmin):
