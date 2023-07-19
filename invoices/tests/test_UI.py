@@ -1,6 +1,6 @@
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import unittest
 
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 

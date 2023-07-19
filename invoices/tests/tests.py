@@ -1,12 +1,11 @@
 import datetime
 
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
-
-from invoices.models import Invoice, InvoiceItem, Client
-
 from freezegun import freeze_time
+
+from invoices.models import Client, Invoice, InvoiceItem
 
 
 @freeze_time("2019-01-01")

@@ -1,26 +1,17 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
-from django.template.loader import render_to_string
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse, reverse_lazy
-from django.forms.models import inlineformset_factory
-from django.views.generic import (
-    ListView,
-    DetailView,
-    CreateView,
-    UpdateView,
-    DeleteView,
-)
 from django.core.files.storage import FileSystemStorage
-from django.shortcuts import render
-
-
-from .models import Invoice, Client, InvoiceItem
-from .forms import InvoiceCreateForm
-
+from django.forms.models import inlineformset_factory
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
+from django.template.loader import render_to_string
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 from weasyprint import HTML
 
+from .forms import InvoiceCreateForm
+from .models import Client, Invoice, InvoiceItem
 
 InvoiceItemsFormset = inlineformset_factory(
     Invoice,

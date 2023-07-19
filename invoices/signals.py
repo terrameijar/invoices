@@ -1,6 +1,7 @@
+from django.db.models import F, Sum
 from django.db.models.signals import post_save
-from django.db.models import Sum, F
 from django.dispatch import receiver
+
 from .models import Invoice, InvoiceItem
 
 
