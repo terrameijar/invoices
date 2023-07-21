@@ -56,7 +56,9 @@ class Invoice(models.Model):
 
     def get_invoice_total(self):
         if self.pk:
-            total = self.items.aggregate(invoice_total=Sum("quantity") * F("rate")).get("invoice_total", 0)
+            total = self.items.aggregate(invoice_total=Sum("quantity") * F("rate")).get(
+                "invoice_total", 0
+            )
             return total
         return self.invoice_total
 
