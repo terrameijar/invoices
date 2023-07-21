@@ -27,6 +27,7 @@ Thumbs.db
 # Editors
 settings.json
 .vscode/
+.idea/
 
 # Misc
 geckodriver.log
