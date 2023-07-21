@@ -59,12 +59,11 @@ class InvoiceTests(TestCase):
 
     def test_invoice_total(self):
         invoice = Invoice.objects.get(id=self.invoice.id)
-        expected_invoice_total = invoice.get_invoice_total()
-        self.assertEqual(expected_invoice_total, 80)
+        self.assertEqual(invoice.get_invoice_total(), 80)
 
     def test_invoice_str_method(self):
         invoice = Invoice.objects.get(id=self.invoice.id)
-        expected_invoice_str = f"{invoice.title} - {invoice.invoice_total}"
+        expected_invoice_str = f"{invoice.title} - {invoice.get_invoice_total():.2f}"
         self.assertEqual(expected_invoice_str, "Test Invoice 1 - 80.00")
 
     def test_invoice_repr_method(self):
