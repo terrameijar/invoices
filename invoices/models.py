@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import Sum, F
 from django.urls import reverse
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -52,6 +53,12 @@ class Invoice(models.Model):
 
     def get_absolute_url(self):
         return reverse("invoice-detail", kwargs={"pk": self.pk})
+
+    def get_invoice_total(self):
+        if self.pk:
+            total = self.items.aggregate(invoice_total=Sum("quantity") * F("rate")).get("invoice_total", 0)
+            return total
+        return self.invoice_total
 
     def __str__(self):
         return f"{self.title}"
