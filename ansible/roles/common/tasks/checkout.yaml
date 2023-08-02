@@ -8,3 +8,4 @@
     version: "{{ repo_branch }}"
     # TODO: Change this in production
     key_file: /home/vuyisile/.ssh/id_ed25519
+    force: true
