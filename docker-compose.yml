@@ -18,6 +18,7 @@ services:
     volumes:
       - invoices_media:/app/staticfiles
       - /etc/ssl/certs:/etc/nginx/ssl
+      - /etc/ssl/private:/etc/nginx/ssl/private
 
 volumes:
   invoices_media:
