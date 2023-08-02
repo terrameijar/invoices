@@ -9,16 +9,26 @@
     name: "{{ sys_packages }}"
     state: "latest"
 
-- name: Create Server SSL certificate
-  community.crypto.openssl_privatekey:
+- name: Create Server OpenSSL Private Key
+  openssl_privatekey:
     path: "/etc/ssl/private/{{server_name}}.key"
-    type: RSA
-    cipher: auto
 
-- name: Create simple self-signed certificate
-  community.crypto.x509_certificate:
+#- name: Create simple self-signed certificate
+#  community.crypto.x509_certificate:
+#    path: "/etc/ssl/certs/{{server_name}}.pem"
+#    privatekey_path: "/etc/ssl/private/{{server_name}}.key"
+#    provider: selfsigned
+#    force: true
+
+- name: Generate an OpenSSL CSR
+  openssl_csr:
+    path: "/etc/ssl/certs/{{server_name}}.csr"
+    privatekey_path: "/etc/ssl/private/{{server_name}}.key"
+    common_name: "cybertron"
+
+- name: Generate a self signed OpenSSL certificate
+  openssl_certificate:
     path: "/etc/ssl/certs/{{server_name}}.pem"
     privatekey_path: "/etc/ssl/private/{{server_name}}.key"
+    csr_path: "/etc/ssl/certs/{{server_name}}.csr"
     provider: selfsigned
-    force: true
-
