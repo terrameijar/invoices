@@ -12,7 +12,7 @@
 - name: Create Server SSL certificate
   community.crypto.openssl_privatekey:
     path: "/etc/ssl/private/{{server_name}}.key"
-    type: Ed25519
+    type: RSA
 
 - name: Create simple self-signed certificate
   community.crypto.x509_certificate:
