@@ -1,0 +1,16 @@
+---
+
+- hosts: cybertron
+  gather_facts: false
+
+  tasks:
+    - include_tasks: roles/common/tasks/checkout.yaml
+    - name: Run `docker compose up --build --detach
+      command:
+        sudo docker compose up --build --detach
+      args:
+        chdir: "{{ repo_folder }}"
+      register: output
+
+    - debug:
+        var: output
