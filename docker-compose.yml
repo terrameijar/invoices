@@ -12,10 +12,12 @@ services:
       context: ./nginx
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - web # Wait until web service is ready
     volumes:
       - invoices_media:/app/staticfiles
+      - /etc/ssl/certs:/etc/nginx/ssl
 
 volumes:
   invoices_media:
