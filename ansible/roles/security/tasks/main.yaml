@@ -13,10 +13,12 @@
   community.crypto.openssl_privatekey:
     path: "/etc/ssl/private/{{server_name}}.key"
     type: RSA
+    cipher: auto
 
 - name: Create simple self-signed certificate
   community.crypto.x509_certificate:
     path: "/etc/ssl/certs/{{server_name}}.pem"
     privatekey_path: "/etc/ssl/private/{{server_name}}.key"
     provider: selfsigned
+    force: true
 
