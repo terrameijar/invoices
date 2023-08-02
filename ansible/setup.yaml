@@ -1,0 +1,13 @@
+---
+
+- name: Setup Server
+  hosts: cybertron
+  become: true
+  vars:
+    # TODO: Change this user in production
+    ansible_user: vuyisile
+    sys_packages: ["curl", "git", "ca-certificates", "apt-transport-https", "software-properties-common", "gnupg"]
+    server_name: cybertron
+  roles:
+    - role: security
+    - role: docker

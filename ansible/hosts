@@ -1,0 +1,7 @@
+[cybertron]
+192.168.200.3
+
+[cybertron:vars]
+repo_name=terrameijar/invoices
+repo_branch=develop
+repo_folder=/home/vuyisile/invoices
