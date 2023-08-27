@@ -4,10 +4,10 @@
   hosts: cybertron
   become: true
   vars:
-    # TODO: Change this user in production
-    ansible_user: vuyisile
-    sys_packages: ["curl", "git", "ca-certificates", "apt-transport-https", "software-properties-common", "gnupg"]
+    ansible_user: "{{create_user}}"
+    sys_packages: ["curl", "git", "ca-certificates", "apt-transport-https", "software-properties-common", "gnupg", "ufw"]
     server_name: cybertron
+    copy_local_ssh_key: "{{ lookup('ansible.builtin.file', lookup('ansible.builtin.env', 'HOME') + '/.ssh/id_ed25519.pub') }}"
   roles:
     - role: security
     - role: docker
