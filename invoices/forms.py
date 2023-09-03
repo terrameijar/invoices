@@ -18,3 +18,9 @@ class InvoiceCreateForm(ModelForm):
         user = kwargs.pop("user")
         super(InvoiceCreateForm, self).__init__(*args, **kwargs)
         self.fields["client"].queryset = Client.objects.filter(created_by=user)
+
+
+class InvoiceEditForm(ModelForm):
+    class Meta:
+        model = Invoice
+        fields = ["title", "client"]

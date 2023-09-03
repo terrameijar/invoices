@@ -44,7 +44,7 @@ class Invoice(models.Model):
     invoice_terms = models.TextField(
         blank=True,
         default="NET 30 Days. Finance Charge of 1.5% will be \
-            made on unpaid balances after 30 days.",
+        made on unpaid balances after 30 days.",
     )
 
     class Meta:
