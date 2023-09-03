@@ -12,3 +12,13 @@ def set_invoice_total(sender, instance, **kwargs):
     ).get("invoice_total", 0)
     if total:
         Invoice.objects.filter(pk=instance.invoice.pk).update(invoice_total=total)
+
+
+@receiver(post_save, sender=Invoice)
+def set_invoice_total(sender, instance, **kwargs):
+    if len(instance.items.all()) > 0:
+        total = instance.items.aggregate(
+            invoice_total=Sum(F("quantity") * F("rate"))
+        ).get("invoice_total", 0)
+        if total:
+            Invoice.objects.filter(pk=instance.pk).update(invoice_total=total)
