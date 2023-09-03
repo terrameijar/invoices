@@ -2,79 +2,82 @@
 
 
 {% block content %}
-    <section>
+<section>
     <div class="invoice-detail-header">
         <h1>Invoice</h1>
 
-        {% comment %} <span><a class="btn btn-secondary" href="{% url 'generate_pdf' invoice.pk  %}">Generate PDF</a></span><br> {% endcomment %}
-        {% comment %} <span><a class="btn btn-secondary" href="{% url 'invoice-edit' invoice.pk  %}">Edit Invoice</a></span> {% endcomment %}
+        {% comment %} <span><a class="btn btn-secondary" href="{% url 'generate_pdf' invoice.pk  %}">Generate
+                PDF</a></span><br> {% endcomment %}
+        {% comment %} <span><a class="btn btn-secondary" href="{% url 'invoice-edit' invoice.pk  %}">Edit
+                Invoice</a></span> {% endcomment %}
         <ul class="invoice-menu">
             <li><a class="btn btn-info" href="{% url 'invoice-edit' invoice.pk  %}">Edit Invoice</a></li>
             <li><a class="btn btn-info" href="{% url 'generate_pdf' invoice.pk  %}">Generate PDF</a></li>
         </ul>
     </div>
-        <article>
-            <table class="invoice table">
-                <thead>
-                    <tr>
-                        <th colspan=5>The Invoice Header</th>
-                    </tr>
-                </thead>
-                <tfoot></tfoot>
-                <tbody>
-                    <tr>
-                        <td colspan=4>
-                            <div style="max-height:120px; overflow:hidden;">
+    <article>
+        <table class="invoice table">
+            <thead>
+                <tr>
+                    <th colspan=5>{{ invoice.title }}</th>
+                </tr>
+            </thead>
+            <tfoot></tfoot>
+            <tbody>
+                <tr>
+                    <td colspan=4>
+                        <div style="max-height:120px; overflow:hidden;">
                             {% if user.company_logo %}
-                                <img class="float-right img-fluid" style="border:1px solid red; height:70%;" src="{{ user.company_logo.url }}"><br>
+                            <img class="float-right img-fluid" style="border:1px solid red; height:70%;"
+                                src="{{ user.company_logo.url }}"><br>
                             {% endif %}
-                                <strong>{{ user.get_full_name }}</strong> <br>
-                                {{ user.address1 }}<br>
-                                {{ user.address2 }}<br>
-                                {{ user.country }}<br>
+                            <strong>{{ user.get_full_name }}</strong> <br>
+                            {{ user.address1 }}<br>
+                            {{ user.address2 }}<br>
+                            {{ user.country }}<br>
 
-                            </div>
+                        </div>
 
-                        </td>
+                    </td>
 
-                    </tr>
-                    <tr>
-                        <td>TO: <strong>{{ client }}</strong><br/><br/>
-                            {{client.company}}  <br/>
-                            {{client.address1}} <br/>
-                            {{client.address2}} <br/>
-                            {{client.country}}  <br/>
+                </tr>
+                <tr>
+                    <td>TO: <strong>{{ client }}</strong><br /><br />
+                        {{client.company}} <br />
+                        {{client.address1}} <br />
+                        {{client.address2}} <br />
+                        {{client.country}} <br />
 
-                        </td>
-                    </tr>
-                    <tr class="table-active">
-                        <th>Item</th>
-                        <th>HRS/QTY</th>
-                        <th>Rate</th>
-                        <th>Tax</th>
-                        <th>Subtotal</th>
-                    </tr>
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <th>Item</th>
+                    <th>HRS/QTY</th>
+                    <th>Rate</th>
+                    <th>Tax</th>
+                    <th>Subtotal</th>
+                </tr>
 
-                    {% for item in invoice_items reversed %}
-                        <tr>
-                            <td> {{ item.item }} </td>
-                            <td> {{ item.quantity }} </td>
-                            <td> {{ item.rate }} </td>
-                            <td>Rate</td>
-                            <td> ${{ item.subtotal }} </td>
-                        </tr>
-                    {% endfor %}
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="invoice-total bg-light">Total: ${{ invoice.invoice_total }}</td>
-                    </tr>
-                </tbody>
+                {% for item in invoice_items reversed %}
+                <tr>
+                    <td> {{ item.item }} </td>
+                    <td> {{ item.quantity }} </td>
+                    <td> {{ item.rate }} </td>
+                    <td>Rate</td>
+                    <td> ${{ item.subtotal }} </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="invoice-total bg-light">Total: ${{ invoice.invoice_total }}</td>
+                </tr>
+            </tbody>
 
-            </table>
-        </article>
-    </section>
+        </table>
+    </article>
+</section>
 
 {% endblock content%}
