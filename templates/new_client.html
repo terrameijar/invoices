@@ -6,7 +6,46 @@
         <div id="new-invoice" class="col-md-6 offset-md-3">
             <h2>New Client</h2>
             <form action="" method="POST">{% csrf_token %}
-                {{ form|crispy }}
+                {{ form.title }}
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.first_name|as_crispy_field}}
+                    </div>
+                     <div class="form-group col-md-6">
+                        {{form.last_name|as_crispy_field}}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.email|as_crispy_field}}
+                    </div>
+                     <div class="form-group col-md-6">
+                        {{form.phone_number|as_crispy_field}}
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        {{ form.company|as_crispy_field }}
+                        {{form.address1|as_crispy_field}}
+
+                        {{form.address2|as_crispy_field}}
+
+
+                    </div>
+                    <div class="form-group col-sm-4">
+                        {{form.country|as_crispy_field}}
+                    </div>
+
+
+                </div>
+
+
+
+
                 <button type="submit" class="btn btn-primary"/>Create Client</form>
             </form>
         </div>
