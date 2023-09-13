@@ -25,7 +25,7 @@ urlpatterns = [
     path("", include("invoices.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("users.urls")),
-    path('favicon.png', RedirectView.as_view(url=static('img/favicon.png'))),
+    path("favicon.png", RedirectView.as_view(url=static("img/favicon.png"))),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
