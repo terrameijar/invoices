@@ -15,7 +15,7 @@ from django.views.generic import (
 )
 from weasyprint import HTML
 
-from .forms import InvoiceCreateForm, InvoiceEditForm
+from .forms import InvoiceCreateForm, InvoiceEditForm, ClientCreateForm
 from .models import Client, Invoice, InvoiceItem
 
 InvoiceItemsFormset = inlineformset_factory(
@@ -172,19 +172,12 @@ class InvoiceDeleteView(LoginRequiredMixin, DeleteView):
 class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client
     template_name = "new_client.html"
-    fields = (
-        "first_name",
-        "last_name",
-        "email",
-        "company",
-        "address1",
-        "address2",
-        "country",
-        "phone_number",
-    )
+    form_class = ClientCreateForm
 
     def form_valid(self, form):
-        form.instance.created_by = self.request.user
+        client = form.save(commit=False)
+        client.created_by = self.request.user
+        client.save()
         return super().form_valid(form)
 
 

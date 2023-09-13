@@ -6,7 +6,7 @@
     <h1 class="text-center my-3"> Edit Client</h1>
     <form action="" method="POST">{% csrf_token %}
         {{ form|crispy }}
-        <input type="submit" value="Save"/>
+        <input class="btn btn-primary" type="submit" value="Save" />
     </form>
 
 {% endblock content %}
