@@ -15,7 +15,7 @@ def set_invoice_total(sender, instance, **kwargs):
 
 
 @receiver(post_save, sender=Invoice)
-def set_invoice_total(sender, instance, **kwargs):
+def set_invoiceitem_total(sender, instance, **kwargs):
     if len(instance.items.all()) > 0:
         total = instance.items.aggregate(
             invoice_total=Sum(F("quantity") * F("rate"))

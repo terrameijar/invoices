@@ -30,7 +30,7 @@ Django invoices runs in a docker container and uses a Postgres 9.x image. Before
 
     ```sh
     docker compose build
-    docker compose run
+    docker compose up
     ```
 
 + To run the automated tests:
