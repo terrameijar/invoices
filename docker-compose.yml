@@ -17,8 +17,7 @@ services:
       - web # Wait until web service is ready
     volumes:
       - invoices_media:/app/staticfiles
-      - /etc/ssl/certs:/etc/nginx/ssl
-      - /etc/ssl/private:/etc/nginx/ssl/private
+      - /etc/letsencrypt:/etc/letsencrypt
 
 volumes:
   invoices_media:

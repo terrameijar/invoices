@@ -1,11 +1,10 @@
 ---
-
 - name: Checkout repo
   git:
     repo: git@github.com:{{ repo_name }}.git
     accept_hostkey: true
     dest: "{{ repo_folder }}"
     version: "{{ repo_branch }}"
-    # TODO: Change this in production
-    key_file: /home/vuyisile/.ssh/id_ed25519
+
+    key_file: /home/optimus/.ssh/id_ed25519
     force: true
