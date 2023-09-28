@@ -18,6 +18,7 @@ services:
     volumes:
       - invoices_media:/app/staticfiles
       - /etc/letsencrypt:/etc/letsencrypt
+      - ./nginx/certs:/etc/nginx/ssl
 
 volumes:
   invoices_media:
