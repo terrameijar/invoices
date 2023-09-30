@@ -1,8 +1,8 @@
 [cybertron]
-192.168.200.3
+54.220.70.177
 
 [cybertron:vars]
 repo_name=terrameijar/invoices
 repo_branch=develop
-repo_folder=/home/vuyisile/invoices
 create_user=optimus
+repo_folder="/home/{{create_user}}/invoices"
