@@ -11,7 +11,7 @@ jobs:
         - name: Run Deployment Ansible Playbook
           uses: dawidd6/action-ansible-playbook@v2
           with:
-            playbook: ansible/deploy.yaml
+            playbook: ./ansible/deploy.yaml
             directory: ./
             # SSH Private Key
             key: ${{ secrets.LIGHTSAIL_VM_SSH_KEY }}
