@@ -10,6 +10,7 @@ jobs:
     steps:
         - name: Checkout
           uses: actions/checkout@v2
+
         - name: Set up SSH key
           run: |
             mkdir -p ~/.ssh/
@@ -19,4 +20,4 @@ jobs:
         
         - name: Deploy using Ansible
           run: |
-            ansible-playbook ansible/deploy.yaml --private-key ~/.ssh/id_rsa -u optimus
+            ansible-playbook ansible/deploy.yaml --private-key ~/.ssh/id_rsa -u optimus -i ansible/hosts
