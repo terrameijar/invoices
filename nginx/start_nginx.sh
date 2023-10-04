@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ENVIRONMENT="${ENVIRONMENT:-development}"
+ENVIRONMENT="${ENVIRONMENT:-production}"
 
 PRODUCTION_CONFIG="nginx.conf"
 DEVELOPMENT_CONFIG="nginx-dev.conf"
