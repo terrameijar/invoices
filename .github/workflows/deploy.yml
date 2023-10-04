@@ -14,10 +14,10 @@ jobs:
         - name: Set up SSH key
           run: |
             mkdir -p ~/.ssh/
-            echo "${{ secrets.LIGHTSAIL_VM_SSH_KEY }}" > ~/.ssh/id_rsa
-            chmod 600 ~/.ssh/id_rsa
+            echo "${{ secrets.LIGHTSAIL_VM_SSH_KEY }}" > ~/.ssh/ed_25519
+            chmod 600 ~/.ssh/ed_25519
             ssh-keyscan -t rsa ${{ secrets.LIGHTSAIL_VM_IP }} >> ~/.ssh/known_hosts
         
         - name: Deploy using Ansible
           run: |
-            ansible-playbook ansible/deploy.yaml --private-key ~/.ssh/id_rsa -u optimus -i ansible/hosts
+            ansible-playbook ansible/deploy.yaml --private-key ~/.ssh/id_ed_25519 -u optimus -i ansible/hosts
