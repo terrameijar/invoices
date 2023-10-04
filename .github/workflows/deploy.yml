@@ -20,4 +20,4 @@ jobs:
         
         - name: Deploy using Ansible
           run: |
-            ansible-playbook ansible/deploy.yaml --private-key ~/.ssh/id_ed_25519 -u optimus -i ansible/hosts
+            ansible-playbook ansible/deploy.yaml --private-key ~/.ssh/ed_25519 -u optimus -i ansible/hosts
