@@ -12,7 +12,7 @@ jobs:
           uses: dawidd6/action-ansible-playbook@v2
           with:
             playbook: deploy.yml
-            directory: ./ansible
+            directory: ./
             # SSH Private Key
             key: ${{ secrets.LIGHTSAIL_VM_SSH_KEY }}
                 

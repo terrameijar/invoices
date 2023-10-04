@@ -12,14 +12,14 @@
 
 
     - include_tasks: roles/common/tasks/checkout.yaml
-    # - name: Run `docker compose up --build --detach
-    #   command:
-    #     sudo docker compose up --build --detach
-    #   args:
-    #     chdir: "{{ repo_folder }}"
-    #   register: output
+    - name: Run `docker compose up --build --detach
+      command:
+        sudo docker compose up --build --detach
+      args:
+        chdir: "{{ repo_folder }}"
+      register: output
 
-    # - debug:
-    #     var: output
+    - debug:
+        var: output
     
-    - include_tasks: roles/common/tasks/webhook_service.yaml
+    # - include_tasks: roles/common/tasks/webhook_service.yaml
