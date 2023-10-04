@@ -17,7 +17,8 @@ jobs:
             echo "${{ secrets.LIGHTSAIL_VM_SSH_KEY }}" > ~/.ssh/ed_25519
             chmod 600 ~/.ssh/ed_25519
             ssh-keyscan -t rsa ${{ secrets.LIGHTSAIL_VM_IP }} >> ~/.ssh/known_hosts
+            echo ~/.ssh/ed_25519.pub
         
         - name: Deploy using Ansible
           run: |
-            ansible-playbook ansible/deploy.yaml --private-key ~/.ssh/ed_25519 -u optimus -i ansible/hosts
+            ansible-playbook -i ansible/hosts --private-key ~/.ssh/ed_25519 -u optimus  ansible/deploy.yaml 
