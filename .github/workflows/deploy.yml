@@ -8,11 +8,15 @@ jobs:
   deploy_code_to_vps:
     runs-on: ubuntu-latest
     steps:
-        - name: Run Deployment Ansible Playbook
-          uses: dawidd6/action-ansible-playbook@v2
-          with:
-            playbook: /home/runner/invoices/invoices/ansible/deploy.yaml
-            directory: ./
-            # SSH Private Key
-            key: ${{ secrets.LIGHTSAIL_VM_SSH_KEY }}
-                
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Set up SSH key
+          run: |
+            mkdir -p ~/.ssh/
+            echo "${{ secrets.LIGHTSAIL_VM_SSH_KEY }}" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan -t rsa ${{ secrets.LIGHTSAIL_VM_IP }} >> ~/.ssh/known_hosts
+        
+        - name: Deploy using Ansible
+          run: |
+            ansible-playbook ansible/deploy.yaml --private-key ~/.ssh/id_rsa -u optimus
