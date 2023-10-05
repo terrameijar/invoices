@@ -20,6 +20,7 @@
         owner: "{{ create_user }}"
         group: "{{ create_user }}"
         mode: '755'
+        force: true
       notify:
         - Reload profile
 
