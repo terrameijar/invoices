@@ -2,6 +2,7 @@
 54.220.70.177
 
 [cybertron:vars]
+deploy_environment=development
 repo_name=terrameijar/invoices
 repo_branch=develop
 create_user=optimus

@@ -11,3 +11,20 @@
   roles:
     - role: security
     - role: docker
+  
+  tasks:
+    - name: Set the environment
+      template:
+        src: roles/common/templates/set_environment.j2
+        dest: /etc/profile.d/set_environment.sh
+        owner: "{{ create_user }}"
+        group: "{{ create_user }}"
+        mode: '755'
+      notify:
+        - Reload profile
+
+  handlers:
+    - name: Reload profile
+      command: source /etc/profile.d/set_environment.sh
+      async: 10
+      poll: 0
