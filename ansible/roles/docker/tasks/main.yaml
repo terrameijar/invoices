@@ -1,5 +1,4 @@
 ---
-
 - name: Add Docker GPG key
   ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
@@ -19,3 +18,9 @@
       - docker-buildx-plugin
       - docker-compose-plugin
     state: present
+
+- name: Add Ansible User to Docker group
+  user:
+    name: "{{ create_user }}"
+    groups: docker
+    append: yes
