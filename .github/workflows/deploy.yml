@@ -21,6 +21,7 @@ jobs:
         
         - name: Deploy using Ansible
           run: |
-            ansible-playbook -i ansible/hosts --private-key ~/.ssh/id_rsa -e "ENVIRONMENT=production" -u optimus ansible/deploy.yaml
+            export ENVIRONMENT=${{vars.ENVIRONMENT}}
+            ansible-playbook -i ansible/hosts --private-key ~/.ssh/id_rsa -u optimus ansible/deploy.yaml
           env:
-            ENVIRONMENT: production  
+            ENVIRONMENT: production
