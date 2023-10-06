@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.template.loader import render_to_string
 from django.urls import reverse, reverse_lazy
+from django.contrib import messages
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -118,7 +119,13 @@ class InvoiceCreateView(LoginRequiredMixin, CreateView):
         if invoice_items.is_valid():
             invoice_items.instance = self.invoice
             invoice_items.save()
+
+        messages.success(self.request, "Your message for success here.")
         return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        messages.error(self.request, "Your message for errors here.")  
+        return super().form_invalid(form)
 
     def get_success_url(self):
         return reverse("invoice-detail", args=[self.object.pk])
@@ -152,7 +159,12 @@ class InvoiceUpdateView(LoginRequiredMixin, UpdateView):
         if invoice_items.is_valid():
             invoice_items.instance = self.object
             invoice_items.save()
+        messages.success(self.request, "Your message for success here.")
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Your message for errors here.")  
+        return super().form_invalid(form)
 
     def get_success_url(self):
         return reverse("invoice-detail", args=[self.object.pk])
@@ -178,7 +190,12 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
         client = form.save(commit=False)
         client.created_by = self.request.user
         client.save()
+        messages.success(self.request, "Client created successfully.")
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Client creation failed. Please check the form for errors.")  # Add your error message here
+        return super().form_invalid(form)
 
 
 class ClientListView(LoginRequiredMixin, ListView):
@@ -235,6 +252,15 @@ class ClientUpdateView(LoginRequiredMixin, UpdateView):
             return Client.objects.filter(created_by=self.request.user)
         else:
             return Client.objects.none()
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Client details updated successfully.")  # Add your success message here
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Client details update failed. Please check the form for errors.")  # Add your error message here
+        return super().form_invalid(form)
 
 
 class ClientDeleteView(LoginRequiredMixin, DeleteView):
