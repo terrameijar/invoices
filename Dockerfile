@@ -20,5 +20,6 @@ COPY . /app
 
 EXPOSE 8000
 RUN python manage.py collectstatic --noinput
-# CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+RUN python manage.py makemigrations && \
+    python manage.py migrate
 CMD ["gunicorn", "-c","gunicorn.conf.py", "invoice_system.wsgi:application"]
