@@ -18,8 +18,8 @@ services:
     volumes:
       - invoices_media:/app/staticfiles
       - /etc/letsencrypt:/etc/letsencrypt
-    environment:
-      - ENVIRONMENT=${ENVIRONMENT:-development}
+    env_file:
+      - .env
 
 volumes:
   invoices_media:
