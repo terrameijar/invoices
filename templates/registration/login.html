@@ -7,6 +7,15 @@
     <div class="row d-flex align-items-center">
     <div class="col-md-6 offset-md-3">
         <h2>Login</h2>
+
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <form method="POST">
             {% csrf_token%}
             <div class="row">

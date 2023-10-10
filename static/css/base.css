@@ -89,3 +89,36 @@
     justify-content: center;
     margin-bottom: 2em;
 }
+
+/* Message Styles */
+.messages {
+    list-style-type: none;
+}
+
+/* Success Message Style */
+.alert-success {
+    background-color: #4CAF50;
+    /* Green background */
+    color: white;
+}
+
+/* Error Message Style */
+.alert-error {
+    background-color: #FF5722;
+    /* Red background */
+    color: white;
+}
+
+/* Warning Message Style */
+.alert-warning {
+    background-color: #FFC107;
+    /* Yellow background */
+    color: black;
+}
+
+/* Info Message Style */
+.alert-info {
+    background-color: #2196F3;
+    /* Blue background */
+    color: white;
+}
