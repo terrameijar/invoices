@@ -6,7 +6,8 @@
 {% block content %}
     <h3>Invoicing App Landing Page.</h3>
     {% if user.is_authenticated %}
-        <p>Welcome {{ user.username }}</p>
+        <p>Welcome 
+            <strong>{{ user.username }}</strong></p>
 
             <a href="{% url "new-invoice" %}" class="btn btn-success">New Invoice</a>
     
