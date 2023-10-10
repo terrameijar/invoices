@@ -18,17 +18,20 @@
         {% endif %}
         <form method="POST">
             {% csrf_token%}
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-6">
-                    {{ form.username|as_crispy_field }}
+                    {{ form.username }}
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-6">
-                    {{ form.password|as_crispy_field }}
+                    {{ form.password }}
+                </div> -->
+            
+                <div class="form-group">
+                    {{form|crispy}}
                 </div>
-            </div>
             <button type="submit" class="btn btn-success">Login</button>
         </form>
     </div>

@@ -44,3 +44,4 @@ wrapt
 xhtml2pdf
 psycopg2
 django-extensions
+django-allauth
