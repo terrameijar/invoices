@@ -125,7 +125,6 @@ class InvoiceCreateView(LoginRequiredMixin, CreateView):
 
 
 class InvoiceUpdateView(LoginRequiredMixin, UpdateView):
-    # fields = ["title", "client", "invoice_terms"]
     template_name = "edit_invoice.html"
     form_class = InvoiceEditForm
 
