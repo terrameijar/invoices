@@ -1,6 +1,5 @@
 *.pyc
 *.pyo
-/.env
 /.venv
 /data
 /static_collected

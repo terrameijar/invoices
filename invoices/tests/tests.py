@@ -251,7 +251,7 @@ class ViewsLoggedInTests(TestCase):
     def test_invoice_list_view(self):
         response = self.client.get(reverse("invoice-list"))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Invoicing App")
+        self.assertContains(response, "Django Invoices")
         self.assertTemplateUsed(response, "dashboard.html")
         self.assertNotIn("You have not created any invoices yet.", response)
 
