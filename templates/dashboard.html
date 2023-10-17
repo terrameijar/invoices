@@ -7,7 +7,7 @@
 
     <h3 class="text-center"> Recent Invoices</h3>
 
-    <a href="{% url "new-invoice" %}" class="btn btn-success">New Invoice</a>
+    <a href="{% url "new-invoice" %}" class="btn btn-info">New Invoice</a>
     {% if object_list %}
         {% for object in objects %}
             {{ object }}

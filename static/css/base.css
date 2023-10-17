@@ -122,3 +122,9 @@
     /* Blue background */
     color: white;
 }
+
+
+/* Form Styles */
+#head_banner_change_password_form {
+    margin-bottom: 1.5rem;
+}

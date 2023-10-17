@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+    {% Email Address %}
+{% endblock head_title %}
+{% block content %}
+    <h1>Email Address</h1>
+        
+    {% if emailaddresses %}
+        {% if current_emailaddress %}
+            <p>
+                The following email address is associated with your account: <a href="mailto:{{ current_emailaddress.email }}">{{ current_emailaddress.email }}</a>
+            </p>
+        {% endif %}
+        {% if new_emailaddress %}
+            <p>
+                Your email address is still pending verification: <a href="mailto:{{ new_emailaddress.email }}">{{ new_emailaddress.email }}</a>
+            </p>
+            {% url 'account_email' as action_url %}
+            <form method="post" action="" tags="button-only" no_visible_fields=True >
+                
+                    {% csrf_token %}
+                    <input type="hidden" name="email" value="{{ new_emailaddress.email }}">
+                    <button type="submit" class="btn btn-info" name="action_send">Re-send Verification</button>
+            </form>
+        {% endif %}
+    {% endif %}
+
+    <h2>Change Email Address</h2>
+    {% url 'account_email' as action_url %}
+    <form method="post" action=action_url>
+        
+            {% csrf_token %}
+            {{form}}
+
+        
+            <button name="action_add" type="submit">Change Email</button>
+    </form>
+{% endblock content %}
