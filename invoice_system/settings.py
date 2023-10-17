@@ -144,6 +144,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://invoices.vndprojects.com",
 ]
 
+DEFAULT_FROM_EMAIL = "admin@vndprojects.com"
 
 # django-allauth config
 LOGIN_REDIRECT_URL = "home"
