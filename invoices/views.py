@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
@@ -52,6 +53,14 @@ class HomePage(ListView):
         except (IndexError, AttributeError):
             recent_invoices = None
         context["recent_invoices"] = recent_invoices
+
+        # Get clients created by the logged-in user
+        if self.request.user.is_authenticated:
+            clients = Client.objects.filter(created_by=self.request.user)
+        else:
+            clients = None
+        context["clients"] = clients
+
         return context
 
 
@@ -172,11 +181,13 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client
     template_name = "new_client.html"
     form_class = ClientCreateForm
+    success_url = reverse_lazy("home")
 
     def form_valid(self, form):
         client = form.save(commit=False)
         client.created_by = self.request.user
         client.save()
+        messages.success(self.request, "Client created successfully!")
         return super().form_valid(form)
 
 

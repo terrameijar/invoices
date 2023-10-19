@@ -100,6 +100,9 @@
     background-color: #4CAF50;
     /* Green background */
     color: white;
+    width: max-content;
+    padding-right: 1em;
+    padding-left: 1em;
 }
 
 /* Error Message Style */
@@ -107,6 +110,9 @@
     background-color: #FF5722;
     /* Red background */
     color: white;
+    width: max-content;
+    padding-right: 1em;
+    padding-left: 1em;
 }
 
 /* Warning Message Style */
@@ -114,6 +120,9 @@
     background-color: #FFC107;
     /* Yellow background */
     color: black;
+    width: max-content;
+    padding-right: 1em;
+    padding-left: 1em;
 }
 
 /* Info Message Style */
@@ -121,6 +130,9 @@
     background-color: #2196F3;
     /* Blue background */
     color: white;
+    width: max-content;
+    padding-right: 1em;
+    padding-left: 1em;
 }
 
 
